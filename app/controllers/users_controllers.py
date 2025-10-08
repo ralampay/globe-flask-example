@@ -1,9 +1,13 @@
 from flask import Blueprint, request
 from app.models import User
-from app.utils import json_response
+from app.utils import json_response, authenticate_user
 from app import db
 
 users_bp = Blueprint("users", __name__, url_prefix="/users")
+
+@users_bp.before_request
+def authenticate():
+    return authenticate_user()
 
 @users_bp.route("", methods=["POST"])
 def create():

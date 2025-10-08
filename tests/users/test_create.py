@@ -1,3 +1,5 @@
+from app.utils import build_headers
+
 def test_successfully_create_user(client, app):
     payload = {
         "email": "user@example.com",
@@ -5,7 +7,7 @@ def test_successfully_create_user(client, app):
         "last_name": "Alampay"
     }
 
-    response = client.post("/users", json=payload)
+    response = client.post("/users", json=payload, headers=build_headers())
 
     data = response.get_json()
 
@@ -27,7 +29,7 @@ def test_successfully_create_user(client, app):
 def test_required_parameters(client):
     payload = {}
     # 1. It should return 422
-    response = client.post("/users", json=payload)
+    response = client.post("/users", json=payload, headers=build_headers())
 
     assert response.status_code == 422
 

@@ -1,5 +1,7 @@
+from app.utils import build_headers
+
 def test_show(client, mock_user):
-    response = client.get(f"/users/{mock_user.id}")
+    response = client.get(f"/users/{mock_user.id}", headers=build_headers())
 
     assert response.status_code == 200
 
@@ -16,6 +18,6 @@ def test_show(client, mock_user):
 def test_not_found(client, mock_user):
     import uuid
     id = str(uuid.uuid4())
-    response = client.get(f"/users/{id}")
+    response = client.get(f"/users/{id}", headers=build_headers())
 
     assert response.status_code == 404

@@ -6,6 +6,13 @@ import yaml
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
+# GET /towers/{id}/fuel_purchases
+# GET /fuel_purchases
+
+# POST /towers/{id}/fuel_purchases
+# POST /fuel_purchases
+#   - tower_id
+
 db = SQLAlchemy()
 migrate = Migrate()
 

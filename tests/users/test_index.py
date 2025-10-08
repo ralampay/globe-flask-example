@@ -1,5 +1,12 @@
-def test_index(client, mock_user):
+from app.utils import build_headers
+
+def test_user_not_logged_in(client):
     response = client.get("/users")
+
+    assert response.status_code == 401
+
+def test_index(client, mock_user):
+    response = client.get("/users", headers=build_headers())
 
     assert response.status_code == 200
 
